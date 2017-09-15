@@ -1,0 +1,101 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<title>jsp/servlet练习</title>
+<script type="text/javascript" src="../js/jquery-3.2.1.min.js"></script> 
+<script type="text/javascript">
+   function myCommit() {
+	var url="none";
+	switch ($("input[name='name']:checked", '#myForm').val()) {
+	  case "谷歌":
+		  url="http://www.google.com";
+		break;
+	  case "百度":
+		  url="http://www.baidu.com";
+		break;
+	  case "FaceBook":
+		  url="http://www.facebook.com";
+		break;
+	  case "腾讯":
+		  url="http://www.qq.com";
+		break;
+	  case "阿里":
+		  url="http://www.alibaba.com";
+		break;
+	  default:
+		 break;
+	}
+	 if(url==="none"){
+		 alert("请选择网站！");
+	 }else{
+		 $("#urlID").val(url);
+		 $("#myForm").submit();  
+	 }
+  }
+</script>
+</head>
+<body>
+
+<h1>使用GET提交表单到JSP</h1>
+<form action="hello.jsp" method="GET">
+站点名: <input type="text" name="name">
+<br />
+网址: <input type="text" name="url" />
+<input type="submit" value="GET提交" />
+</form>
+
+<h1>使用POST提交表单到JSP</h1>
+<form action="hello.jsp" method="POST">
+站点名: <input type="text" name="name">
+<br />
+网址: <input type="text" name="url" />
+<input type="submit" value="POST提交" />
+</form>
+
+<h1>传递 Checkbox 数据到JSP</h1>
+<form action="hello.jsp" method="POST" target="_blank">
+<input type="checkbox" name="google" checked="checked" /> Google
+<input type="checkbox" name="runoob"  /> 菜鸟教程
+<input type="checkbox" name="taobao" checked="checked" />  淘宝
+<input type="submit" value="选择网站" />
+</form>
+
+<h1>使用GET提交表单到Servlet</h1>
+<form action="HelloWorldServlet" method="GET">
+站点名: <input type="text" name="name">
+<br />
+网址: <input type="text" name="url" />
+<input type="submit" value="GET提交" />
+</form>
+
+<h1>使用POST提交表单到Servlet</h1>
+<form action="HelloWorldServlet" method="POST">
+站点名: <input type="text" name="name">
+<br />
+网址: <input type="text" name="url" />
+<input type="submit" value="POST提交" />
+</form>
+
+<h1>传递 radio 数据到Servlet</h1>
+<form action="HelloWorldServlet" id="myForm" method="POST">
+	<label><input name="name" type="radio" value="谷歌" />谷歌 </label> 
+	<label><input name="name" type="radio" value="百度" />百度 </label> 
+	<label><input name="name" type="radio" value="FaceBook" />FaceBook </label> 
+	<label><input name="name" type="radio" value="腾讯" />腾讯 </label> 
+	<label><input name="name" type="radio" value="阿里" />阿里 </label> 
+	<input name="url" type="hidden" id="urlID"/>
+	<input type="button" value="选择网站" onclick="myCommit()"/>  
+</form>
+
+<h1>传递 checkbox 数据到Servlet</h1>
+<form action="HelloWorldServlet" method="POST" target="_blank">
+<input type="checkbox" name="语文" /> 语文
+<input type="checkbox" name="数学" checked="checked" /> 数学
+<input type="checkbox" name="物理" checked="checked" /> 物理
+<input type="checkbox" name="化学" /> 化学
+<input type="submit" value="选择学科" />
+</form>
+
+</body>
+</html>
